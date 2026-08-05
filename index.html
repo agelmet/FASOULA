@@ -516,6 +516,28 @@ header.scrolled .burger span{background:var(--ink)}
   .hbadge .l{font-size:.64rem}
 }
 
+
+/* --- hero badges taken out of absolute positioning: they can no longer
+       collide with the headline/buttons at any viewport height --- */
+.hero{flex-direction:column;justify-content:center;align-items:stretch;padding:150px 0 118px}
+.hero h1{font-size:clamp(2rem,4.3vw,3.9rem);max-width:18ch}
+.hero-inner{flex:none}
+.hero-badges{position:static;inset:auto;width:100%;padding:0 28px;
+  margin:clamp(46px,6.5vh,86px) auto 0;flex:none}
+@media(max-height:780px){
+  .hero{padding:132px 0 96px}
+  .hero p.lead{margin-bottom:28px}
+  .scroll-ind{display:none}
+}
+@media(max-width:900px){
+  .hero{padding:120px 0 96px}
+  .hero-badges{margin-top:40px}
+}
+@media(max-width:560px){
+  .hero{padding:110px 0 88px}
+  .hero-badges{gap:18px}
+}
+
 </style>
 </head>
 <body>
