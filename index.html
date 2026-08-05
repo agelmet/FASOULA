@@ -473,6 +473,49 @@ h1,h2,h3,h4{text-wrap:balance}
   body{padding-bottom:76px}
 }
 
+
+/* ==========================================================
+   HERO + NAV adjustments (client review round 2)
+   ========================================================== */
+
+/* nav brand + links: white over the hero photo, dark once scrolled */
+header .logo{color:#fff}
+header .logo small[data-el],header .logo small[data-en]{color:rgba(255,255,255,.72)}
+header .nav-links a.lnk{color:rgba(255,255,255,.88)}
+header .nav-links a.lnk:hover{color:#fff}
+header .nav-links a.lnk::after{background:#fff}
+header .burger span{background:#fff}
+header.scrolled .logo{color:var(--ink)}
+header.scrolled .logo small[data-el],header.scrolled .logo small[data-en]{color:var(--teal)}
+header.scrolled .nav-links a.lnk{color:var(--ink-soft)}
+header.scrolled .nav-links a.lnk:hover,header.scrolled .nav-links a.lnk.cur{color:var(--teal)}
+header.scrolled .nav-links a.lnk::after{background:linear-gradient(90deg,var(--teal),var(--gold))}
+header.scrolled .burger span{background:var(--ink)}
+.logo,.logo small,.nav-links a.lnk,.burger span{transition:color .45s ease,background .45s ease}
+
+/* hero: smaller headline, shifted left, badges given room */
+.hero{padding:130px 0 210px}
+.hero h1{font-size:clamp(2.15rem,4.9vw,4.15rem);max-width:15ch;margin-bottom:22px}
+.hero p.lead{margin-bottom:34px}
+.hero-badges{bottom:58px;gap:clamp(26px,3.4vw,52px)}
+.hbadge .n{font-size:2.3rem}
+@media(min-width:1360px){
+  .hero-inner,.hero-badges{max-width:1360px}
+}
+@media(min-width:1700px){
+  .hero-inner,.hero-badges{max-width:1500px}
+}
+@media(max-width:900px){
+  .hero{padding:120px 0 230px}
+  .hero-badges{bottom:64px;gap:22px}
+  .hbadge .n{font-size:1.9rem}
+}
+@media(max-width:560px){
+  .hero{padding:110px 0 250px}
+  .hbadge{padding-left:14px}
+  .hbadge .l{font-size:.64rem}
+}
+
 </style>
 </head>
 <body>
