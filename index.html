@@ -327,6 +327,11 @@ body.en .svc-cat li b[data-en],body.en .cinfo-item .val[data-en]{display:block}
    REFINEMENT LAYER — structure & polish (palette unchanged)
    ========================================================== */
 
+/* fix language swap: class rules (.logo small, .kick, li b, footer a) had higher
+   specificity than [data-en]{display:none}, so BOTH languages were rendering */
+body:not(.en) [data-en]{display:none!important}
+body.en [data-el]{display:none!important}
+
 /* fix EN language swap: block elements must stay block */
 body.en p[data-en],body.en h1[data-en],body.en h2[data-en],body.en h3[data-en],
 body.en h4[data-en],body.en h5[data-en],body.en div[data-en],body.en li[data-en],
