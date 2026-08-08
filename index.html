@@ -8,7 +8,9 @@
 <meta property="og:title" content="Μαρία Φασούλα, DDS, MSc | Ειδική Προσθετολόγος (EPA)">
 <meta property="og:description" content="Ευρωπαϊκή αριστεία στην προσθετική. Πιστοποιημένη Ειδική Προσθετολόγος από την EPA — Θεσσαλονίκη.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://raw.githubusercontent.com/agelmet/FASOULA/main/unnamed-189.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/agelmet/FASOULA/main/assets/fasoula-logo-1080.webp">
+<link rel="icon" type="image/webp" href="assets/fasoula-logo-180.webp">
+<link rel="preload" as="image" href="assets/fasoula-logo-540.webp" imagesrcset="assets/fasoula-logo-180.webp 180w, assets/fasoula-logo-360.webp 360w, assets/fasoula-logo-540.webp 540w, assets/fasoula-logo-1080.webp 1080w" imagesizes="min(300px, 62vw)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,11 +18,18 @@
 :root{
   --ink:#11161c;
   --ink-soft:#2c3540;
-  --mute:#6b7785;
-  --line:rgba(17,22,28,.08);
+  --mute:#6f6a63;
+  --line:rgba(120,114,104,.16);
   --bg:#ffffff;
-  --bg-2:#f6f8fa;
-  --bg-3:#eef3f6;
+  --bg-2:#f7f6f4;
+  --bg-3:#efedea;
+  /* Soft warm greys sampled straight off the logo artwork (mean #D8D6D1, range
+     #BDBAB4 - #DDDCD7). --stone is the logo grey itself; the other two are the
+     same hue lightened and darkened so surfaces, rules and captions all sit in
+     the same family as the mark. */
+  --stone:#d8d6d1;
+  --stone-soft:#eceae6;
+  --stone-deep:#a8a49c;
   --teal:#1e8f8a;
   --teal-deep:#136b67;
   --teal-soft:#e6f4f3;
@@ -53,7 +62,7 @@ section{position:relative}
 .pl-tooth path{stroke:var(--teal);stroke-width:5;fill:none;stroke-linecap:round;stroke-dasharray:300;stroke-dashoffset:300;animation:pldraw 1.8s ease forwards infinite}
 @keyframes pldraw{0%{stroke-dashoffset:300}55%{stroke-dashoffset:0}100%{stroke-dashoffset:0;opacity:.2}}
 @keyframes plpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.pl-txt{font-family:'Cormorant Garamond',serif;font-size:1.3rem;letter-spacing:.35em;color:var(--mute);text-transform:uppercase}
+.pl-txt{font-family:'Cormorant Garamond',serif;font-size:1.3rem;letter-spacing:.35em;color:var(--stone-deep);text-transform:uppercase}
 
 /* ===== NAV ===== */
 header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .45s cubic-bezier(.4,0,.2,1)}
@@ -61,7 +70,14 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all .45s cubi
 header.scrolled{background:rgba(255,255,255,.82);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
 header.scrolled .nav{padding:14px 28px}
 .logo{display:flex;align-items:center;gap:12px;font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;letter-spacing:.01em}
-.logo .mark{width:42px;height:42px;flex:none}
+/* The logo artwork is a pale warm grey (#D8D6D1) on transparency. Over the hero the header
+   is dark, so it reads as-is; once the header goes white on scroll it would all but vanish,
+   so it is darkened there instead of being given a plate. Same treatment on the preloader,
+   which sits on white. */
+.logo .mark{width:52px;height:auto;flex:none;object-fit:contain}
+header.scrolled .logo .mark{filter:brightness(.52) contrast(1.18)}
+.foot-logo .mark{filter:none}
+#preloader .pl-tooth{width:min(300px,62vw);height:auto;filter:brightness(.55) contrast(1.15)}
 .logo small{display:block;font-family:'Manrope',sans-serif;font-size:.58rem;letter-spacing:.32em;color:var(--teal);text-transform:uppercase;font-weight:600;margin-top:2px}
 .logo b{font-weight:600}
 .nav-links{display:flex;align-items:center;gap:34px}
@@ -199,6 +215,14 @@ header.scrolled .nav{padding:14px 28px}
 .philo-card h4{font-size:1.4rem;color:var(--ink);margin:6px 0 12px}
 .philo-card p{color:var(--mute);font-family:'Manrope';font-weight:300;font-size:.94rem}
 
+/* ===== BEFORE / AFTER ===== */
+.ba-sec{background:var(--stone-soft)}
+.ba-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:2.6rem}
+.ba-item{margin:0;position:relative}
+.ba-item img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);display:block;box-shadow:var(--shadow-soft)}
+.ba-item figcaption{position:absolute;left:14px;bottom:14px;background:rgba(17,22,28,.72);color:#fff;font-family:'Manrope',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;padding:7px 14px;border-radius:999px;backdrop-filter:blur(6px)}
+@media(max-width:820px){.ba-pair{grid-template-columns:1fr;gap:16px}}
+
 /* ===== SPACE GALLERY ===== */
 .gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:16px}
 .gal-item{border-radius:18px;overflow:hidden;cursor:pointer;position:relative;box-shadow:var(--shadow-soft)}
@@ -268,7 +292,7 @@ header.scrolled .nav{padding:14px 28px}
 footer{background:var(--ink);color:rgba(255,255,255,.7);padding:70px 0 36px}
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:50px;padding-bottom:46px;border-bottom:1px solid rgba(255,255,255,.12)}
 .foot-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px;color:#fff}
-.foot-logo .mark{width:42px;height:42px}
+.foot-logo .mark{width:52px;height:auto}
 .foot-logo .nm{font-family:'Cormorant Garamond',serif;font-size:1.3rem}
 .foot-logo small{display:block;font-family:'Manrope';font-size:.56rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-top:2px}
 .foot-col h5{font-family:'Manrope';font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-bottom:18px;font-weight:600}
@@ -547,7 +571,7 @@ header.scrolled .burger span{background:var(--ink)}
 
 <!-- PRELOADER -->
 <div id="preloader">
-  <svg class="pl-tooth" viewBox="0 0 64 64"><path d="M32 8C20 8 14 14 14 24c0 8 3 14 5 22 1 5 3 8 6 8 3 0 3-6 5-10 1-2 2-3 2-3s1 1 2 3c2 4 2 10 5 10 3 0 5-3 6-8 2-8 5-14 5-22 0-10-6-16-18-16Z"/></svg>
+  <img class="pl-tooth" src="assets/fasoula-logo-540.webp" srcset="assets/fasoula-logo-180.webp 180w, assets/fasoula-logo-360.webp 360w, assets/fasoula-logo-540.webp 540w, assets/fasoula-logo-1080.webp 1080w" sizes="min(300px, 62vw)" width="1080" height="719" alt="Μαρία Φασούλα" fetchpriority="high" decoding="async">
   <div class="pl-txt">Φασούλα</div>
 </div>
 
@@ -555,7 +579,7 @@ header.scrolled .burger span{background:var(--ink)}
 <header id="header">
   <nav class="nav">
     <a href="#hero" class="logo" aria-label="Μαρία Φασούλα">
-      <svg class="mark" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="#e6f4f3"/><path d="M32 14C22 14 17 19 17 27c0 7 2.5 12 4 18.5 1 4.5 2.5 6.5 4.8 6.5 2.4 0 2.6-4.8 4-8 .8-1.8 1.6-2.5 2.2-2.5s1.4.7 2.2 2.5c1.4 3.2 1.6 8 4 8 2.3 0 3.8-2 4.8-6.5C50.5 39 53 34 53 27c0-8-5-13-15-13Z" fill="#1e8f8a"/><path d="M32 14C22 14 17 19 17 27" stroke="#c8a96a" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <img class="mark" src="assets/fasoula-logo-180.webp" srcset="assets/fasoula-logo-180.webp 180w, assets/fasoula-logo-360.webp 360w, assets/fasoula-logo-540.webp 540w, assets/fasoula-logo-1080.webp 1080w" sizes="52px" width="1080" height="719" alt="" aria-hidden="true" decoding="async">
       <span><b>Μαρία Φασούλα</b><small data-el>Ειδική Προσθετολόγος · EPA</small><small data-en>Prosthodontist · EPA Certified</small></span>
     </a>
     <div class="nav-links">
@@ -711,6 +735,40 @@ header.scrolled .burger span{background:var(--ink)}
 
 
 <!-- JOURNEY -->
+<!-- ===== BEFORE / AFTER =====
+     CONSENT: these are identifiable patient photographs. Do not publish without her
+     written consent on file. To add another pair, copy one .ba-pair block and swap the
+     two <img> sources - the layout takes any number of pairs. -->
+<section class="pad ba-sec" id="results">
+  <div class="wrap">
+    <div class="shead reveal">
+      <span class="kick" data-el>Αποτελέσματα</span><span class="kick" data-en>Results</span>
+      <h2 data-el>Πριν και <em>μετά</em></h2>
+      <h2 data-en>Before and <em>after</em></h2>
+      <p data-el>Πραγματικό περιστατικό αισθητικής αποκατάστασης, με τη συγκατάθεση της ασθενούς.</p>
+      <p data-en>A real aesthetic restoration case, published with the patient's consent.</p>
+    </div>
+    <div class="ba-pair reveal">
+      <figure class="ba-item">
+        <img src="assets/smile-before-1200.webp" srcset="assets/smile-before-480.webp 480w, assets/smile-before-800.webp 800w, assets/smile-before-1200.webp 1200w, assets/smile-before-1600.webp 1600w" sizes="(max-width:820px) 92vw, 46vw"
+             width="1600" height="1200" loading="lazy" decoding="async"
+             alt="Το χαμόγελο της ασθενούς πριν από την αισθητική αποκατάσταση"
+             data-alt-el="Το χαμόγελο της ασθενούς πριν από την αισθητική αποκατάσταση"
+             data-alt-en="The patient's smile before the aesthetic restoration">
+        <figcaption data-el>Πριν</figcaption><figcaption data-en>Before</figcaption>
+      </figure>
+      <figure class="ba-item">
+        <img src="assets/smile-after-1200.webp" srcset="assets/smile-after-480.webp 480w, assets/smile-after-800.webp 800w, assets/smile-after-1200.webp 1200w, assets/smile-after-1600.webp 1600w" sizes="(max-width:820px) 92vw, 46vw"
+             width="1600" height="1200" loading="lazy" decoding="async"
+             alt="Το χαμόγελο της ασθενούς μετά την αισθητική αποκατάσταση"
+             data-alt-el="Το χαμόγελο της ασθενούς μετά την αισθητική αποκατάσταση"
+             data-alt-en="The patient's smile after the aesthetic restoration">
+        <figcaption data-el>Μετά</figcaption><figcaption data-en>After</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section class="pad jrn" id="journey">
   <div class="wrap">
     <div class="shead reveal">
@@ -991,7 +1049,7 @@ header.scrolled .burger span{background:var(--ink)}
     <div class="foot-grid">
       <div>
         <div class="foot-logo">
-          <svg class="mark" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="31" fill="rgba(255,255,255,.08)"/><path d="M32 14C22 14 17 19 17 27c0 7 2.5 12 4 18.5 1 4.5 2.5 6.5 4.8 6.5 2.4 0 2.6-4.8 4-8 .8-1.8 1.6-2.5 2.2-2.5s1.4.7 2.2 2.5c1.4 3.2 1.6 8 4 8 2.3 0 3.8-2 4.8-6.5C50.5 39 53 34 53 27c0-8-5-13-15-13Z" fill="#1e8f8a"/></svg>
+          <img class="mark" src="assets/fasoula-logo-180.webp" srcset="assets/fasoula-logo-180.webp 180w, assets/fasoula-logo-360.webp 360w, assets/fasoula-logo-540.webp 540w, assets/fasoula-logo-1080.webp 1080w" sizes="52px" width="1080" height="719" alt="" aria-hidden="true" decoding="async">
           <div><div class="nm">Μαρία Φασούλα</div><small>Prosthodontist · EPA</small></div>
         </div>
         <p class="foot-desc" data-el>Ειδική Προσθετολόγος πιστοποιημένη από την European Prosthodontic Association. Ευρωπαϊκή αριστεία στην προσθετική, την εμφυτευματολογία και την αισθητική αποκατάσταση, στη Θεσσαλονίκη.</p>
